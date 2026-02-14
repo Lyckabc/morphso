@@ -149,7 +149,7 @@ async def create_table(request: TableCreateRequest):
     except Exception as e:
         raise HTTPException(
             status_code=500,
-            detail=f"Failed to create table: {str(e)}",
+            detail="Failed to create table. Please check the server logs for details.",
         )
 
 
