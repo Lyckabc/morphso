@@ -83,7 +83,7 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """저장된 계정 정보로 DB 연동 상태를 확인하고, 연동 중인 DB·admin_user·host를 반환한다."""
+    """Checks the DB connection status using stored account information and returns connection details."""
     account = setup_db.DbAccountConfig().load_from_env()
     result = account.health_check(dbname="postgres")
     return result
