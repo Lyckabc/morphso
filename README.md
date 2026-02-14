@@ -105,11 +105,17 @@ uvicorn main:app --port 8011
 
 ## test
 ```bash
+POST /api/database/create
+{
+  "new_db": "my_database",
+  "new_pass": "secure_password123",
+  "new_user": "my_user"
+}
 POST /api/table/create
 {
-  "target_db": "my_database",
   "create_sql": "CREATE TABLE ci_projects (\n    id SERIAL PRIMARY KEY,\n    service_name VARCHAR(50) UNIQUE,\n    repo_url TEXT NOT NULL,\n    branch VARCHAR(50) DEFAULT 'main',\n    registry_url TEXT\n);",
-  "grant_user": "my_user"
+  "grant_user": "my_user",
+  "target_db": "my_database"
 }
 ```
 
