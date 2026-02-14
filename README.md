@@ -103,6 +103,16 @@ python3 -m pip install -r requirements.txt
 uvicorn main:app --port 8011
 ```
 
+## test
+```bash
+POST /api/table/create
+{
+  "target_db": "my_database",
+  "create_sql": "CREATE TABLE ci_projects (\n    id SERIAL PRIMARY KEY,\n    service_name VARCHAR(50) UNIQUE,\n    repo_url TEXT NOT NULL,\n    branch VARCHAR(50) DEFAULT 'main',\n    registry_url TEXT\n);",
+  "grant_user": "my_user"
+}
+```
+
 ## docker image managing
 # ${DOMAIN}
 ```bash
