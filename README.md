@@ -100,7 +100,7 @@ venv\Scripts\activate
 python3 -m pip install -r requirements.txt
 
 # 8011 port fastAPI execution
-uvicorn src.main:app --port 8011 --reload
+uvicorn main:app --port 8011
 ```
 
 ## docker image managing
