@@ -5,5 +5,5 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.version=$BUILD_VERSION
-COPY setup_db.py .
-CMD ["python", "setup_db.py"]
+COPY main.py .
+RUN uvicorn main:app --port 8011
