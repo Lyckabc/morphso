@@ -2,12 +2,14 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 import setup_db
+from infisical_router import router as infisical_router
 
 app = FastAPI(
     title="Nucleus Database Management API",
     description="Central database management service for creating databases and users",
     version="1.0.0"
 )
+app.include_router(infisical_router)
 
 
 class DatabaseCreateRequest(BaseModel):
@@ -76,7 +78,8 @@ async def root():
         "endpoints": {
             "create_database": "/api/database/create",
             "create_table": "/api/table/create",
-            "health": "/health"
+            "health": "/health",
+            "secret": "/api/v1/secret"
         }
     }
 
