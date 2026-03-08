@@ -5,7 +5,7 @@ import setup_db
 from infisical_router import router as infisical_router
 
 app = FastAPI(
-    title="Nucleus Database Management API",
+    title="Morphso Database Management API",
     description="Central database management service for creating databases and users",
     version="1.0.0"
 )
@@ -73,11 +73,11 @@ class TableCreateResponse(BaseModel):
 @app.get("/")
 async def root():
     return {
-        "message": "Nucleus Database Management API",
+        "message": "Morphso Database Management API",
         "version": "1.0.0",
         "endpoints": {
-            "create_database": "/api/database/create",
-            "create_table": "/api/table/create",
+            "create_database": "/api/v1/rdb/database/create",
+            "create_table": "/api/v1/rdb/table/create",
             "health": "/health",
             "secret": "/api/v1/secret"
         }
@@ -92,7 +92,7 @@ async def health_check():
     return result
 
 
-@app.post("/api/database/create", response_model=DatabaseCreateResponse)
+@app.post("/api/v1/rdb/database/create", response_model=DatabaseCreateResponse)
 async def create_database(request: DatabaseCreateRequest):
     """
     Create a new PostgreSQL database and user.
@@ -127,7 +127,7 @@ async def create_database(request: DatabaseCreateRequest):
         )
 
 
-@app.post("/api/table/create", response_model=TableCreateResponse)
+@app.post("/api/v1/rdb/table/create", response_model=TableCreateResponse)
 async def create_table(request: TableCreateRequest):
     """
     Create a table in the target database using the provided SQL,
@@ -158,4 +158,4 @@ async def create_table(request: TableCreateRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8011)
+    uvicorn.run(app, host="0.0.0.0", port=8013)
